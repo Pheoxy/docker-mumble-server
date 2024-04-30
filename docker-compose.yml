@@ -1,0 +1,14 @@
+services:
+    mumble-server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: mumble-server
+        hostname: mumble-server
+        restart: on-failure
+        ports:
+            - 64738:64738
+            - 64738:64738/udp
+            # - 6502:6502
+        volumes:
+            - ./config:/config
