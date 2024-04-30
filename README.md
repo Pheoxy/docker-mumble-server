@@ -14,7 +14,7 @@ Mumble is an open source, low-latency, high quality voice chat software primaril
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/yourusername/docker-mumble-server.git
+    git clone https://github.com/Pheoxy/docker-mumble-server.git
     cd docker-mumble-server
     ```
 
