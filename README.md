@@ -1,4 +1,10 @@
-# Mumble Server Docker Setup
+# pheoxy/docker-mumble-server
+
+[![GitHub Stars](https://img.shields.io/github/stars/pheoxy/docker-mumble-server.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/pheoxy/docker-mumble-server)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pheoxy/docker-mumble-server/docker-publish.yml?style=for-the-badge&logo=github&logoColor=ffffff&label=pheoxy&labelColor=555555)](https://github.com/Pheoxy/docker-mumble-server/actions)
+[![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=pheoxy&message=GitHub%20Package&logo=github)](https://github.com/pheoxy/docker-mumble-server/packages)
+
+![Mumble](https://avatars.githubusercontent.com/u/639008?s=200&v=4)
 
 This repository contains a Docker setup for running a [Mumble](https://www.mumble.info/) server.
 
