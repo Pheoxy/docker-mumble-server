@@ -17,6 +17,22 @@ Mumble is an open source, low-latency, high quality voice chat software primaril
 
 ## Usage
 
+### docker run
+
+1. Run:
+
+  ```bash
+    docker run \
+      --name=mumble-server \
+      --hostname=mumble-server \
+      --publish 64738/tcp \
+      --publish 64738/udp \
+      --volume config:/config \
+      ghcr.io/pheoxy/docker-mumble-server:main
+  ```
+
+### Dockerfile
+
 1. Clone this repository:
 
     ```bash
