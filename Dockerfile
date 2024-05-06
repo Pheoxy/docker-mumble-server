@@ -3,6 +3,7 @@ FROM alpine:3.19
 # Install dependencies
 RUN apk add --no-cache \
         bash \
+        curl \
         murmur
 
 ARG MUMBLE_UID=1000
