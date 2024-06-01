@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -8,7 +8,7 @@ readonly CONFIG_DIR="/config"
 readonly CONFIG_FILE="${CONFIG_DIR}/mumble-server.ini"
 
 # If the configuration file doesn't exist, download the most recent default from GitHub
-if [[ ! -f "$CONFIG_FILE" ]]; then
+if [ ! -f "$CONFIG_FILE" ]; then
     # Use curl to download the file
     # -o saves the downloaded file to the specified path
     # The URL is the direct link to the raw mumble-server.ini file on GitHub
