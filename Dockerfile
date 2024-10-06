@@ -34,7 +34,7 @@ WORKDIR /config
 EXPOSE 64738/tcp 64738/udp
 
 # Copy entrypoint script.
-COPY entrypoint.sh /entrypoint.sh
+COPY --chown=mumble:mumble entrypoint.sh /entrypoint.sh
 
 # Start mumble-server.
 VOLUME ["/config"]
