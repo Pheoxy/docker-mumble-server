@@ -6,47 +6,44 @@
 
 ![Mumble](https://avatars.githubusercontent.com/u/639008?s=200&v=4)
 
-This repository contains a Docker setup for running a [Mumble](https://www.mumble.info/) server.
+## Overview
 
-Mumble is an open source, low-latency, high quality voice chat software primarily intended for use while gaming.
+This repository provides a Docker setup for running a [Mumble](https://www.mumble.info/) server. Mumble is an open-source, low-latency, high-quality voice chat software primarily intended for use while gaming.
 
 ## Prerequisites
 
-- Docker
-- Docker Compose *(Optional)*
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/) *(Optional but recommended)*
 
-## Usage
+## Getting Started
 
-### docker run
+### Using `docker run`
 
-1. Run:
+1. **Run the Mumble Server Container:**
 
-  ```bash
+    ```bash
     docker run \
       --name=mumble-server \
       --hostname=mumble-server \
-      --publish 64738/tcp \
-      --publish 64738/udp \
+      --publish 64738:64738/tcp \
+      --publish 64738:64738/udp \
+      --publish 6502:6502/tcp \ # Optional: Enable Ice on port 6502
       --volume config:/config \
       ghcr.io/pheoxy/docker-mumble-server:main
-  ```
+    ```
 
-### Dockerfile
+### Using Docker Compose
 
-1. Clone this repository:
+1. **Clone the Repository:**
 
     ```bash
     git clone https://github.com/Pheoxy/docker-mumble-server.git
     cd docker-mumble-server
     ```
 
-2. Build and start the Docker container using `docker-compose`:
-
-    Create a `docker-compose.yml` file and paste the below and edit to your needs.
-
     ```yaml
     services:
-    mumble-server:
+      mumble-server:
         build:
             context: .
             dockerfile: Dockerfile
@@ -54,25 +51,66 @@ Mumble is an open source, low-latency, high quality voice chat software primaril
         hostname: mumble-server
         restart: on-failure
         ports:
-            - 64738:64738
+            - 64738:64738/tcp
             - 64738:64738/udp
-            # - 6502:6502
+            - 6502:6502/tcp # Optional: Enable Ice on port 6502
         volumes:
             - ./config:/config
 
     ```
 
+2. **Create a `docker-compose.yml` File:**
+
+    If you haven't cloned the repository, you can create a `docker-compose.yml` file with the following content:
+
+    ```yaml
+    services:
+      mumble-server:
+        image: ghcr.io/pheoxy/docker-mumble-server:main
+        container_name: mumble-server
+        hostname: mumble-server
+        restart: unless-stopped
+        ports:
+          - 64738:64738/tcp
+          - 64738:64738/udp
+          - 6502:6502/tcp # Optional: Enable Ice on port 6502
+        volumes:
+          - ./config:/config
+    ```
+
+3. **Start the Container:**
+
     ```bash
     docker-compose up -d
     ```
+
+4. **Verify the Setup:**
+
+    Ensure the container is running:
+
+    ```bash
+    docker-compose ps
+    ```
+
+    You should see the `mumble-server` service listed and running.
+
+## Access the Server
 
 The Mumble server will be accessible at `localhost:64738`.
 
 ## Configuration
 
-The Mumble server configuration can be modified by editing the `mumble-server.ini` file in the `config` directory.
+- **Configuration File:**
 
-The `entrypoint.sh` script will download the latest version of `mumble-server.ini` if none is found for you on starting of the Docker container.
+  The Mumble server configuration is managed via the `mumble-server.ini` file located in the `config` directory.
+
+- **Initial Setup:**
+
+  On the first run, the `entrypoint.sh` script will download the latest version of `mumble-server.ini` if none is found in the `config` directory.
+
+- **Customizing Settings:**
+
+  Edit the `config/mumble-server.ini` file to customize server settings such as server name, password, and other preferences.
 
 ## Volumes
 
@@ -84,6 +122,11 @@ The following ports are exposed:
 
 - `64738/tcp`: Mumble server TCP port
 - `64738/udp`: Mumble server UDP port
+- `6502/tcp`: (Optional) Used for Ice (Interactive Connectivity Establishment) services.
+
+## Ice for Mumble
+
+Ice (Interactive Connectivity Establishment) is used in Mumble for remote administration and monitoring. Enabling Ice allows administrators to manage the Mumble server remotely using compatible clients or scripts.
 
 ## Contributing
 
