@@ -1,5 +1,5 @@
 # Use alpine linux as base image.
-FROM alpine:3.20
+FROM alpine:3.21
 
 # Install mumble-server.
 RUN apk add --no-cache \
